@@ -14,7 +14,13 @@ class OrderOpreations(Resource):
         return {"message":"Order not found"}, 404
 
 
+    def put(self, id):
+        order = Order().get_by_id(id)
 
+        if order:
+            order.status="approved"
+            return {"message":"status approved"}
+        return {"message":"Order not found"}, 404
 
 class DisplayOrders(Resource):
     def get(self):
