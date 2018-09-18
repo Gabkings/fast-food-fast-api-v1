@@ -5,6 +5,7 @@ from app import create_app
 
 class TestOrders(unittest.TestCase):
     def setUp(self):
+        '''settings'''
         self.app = create_app("testing")
         self.client = self.app.test_client()
         self.app_context = self.app.app_context()
@@ -14,10 +15,11 @@ class TestOrders(unittest.TestCase):
         self.app_context.pop()
 
     def test_create_order(self):
+        ''''''
         data = {
-            "name": "eggcurry",
+            "name": "pizza",
             "price": 20,
-            "description": "sweet eggs"
+            "description": "sweet pizza"
         }
 
         res = self.client.post(
@@ -55,7 +57,7 @@ class TestOrders(unittest.TestCase):
         print(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(json.loads(res.data)[
-                         'message'], "status approved")
+                         'message'], "Orders Completed")
 
     
     
